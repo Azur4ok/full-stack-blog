@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
+import cors from 'cors';
 
 import { router } from './routes/index.js';
 
@@ -11,6 +12,7 @@ const { json } = express;
 const server = express();
 
 server.use(json());
+server.use(cors())
 server.use('/api', router);
 server.use('/uploads', express.static('uploads'));
 

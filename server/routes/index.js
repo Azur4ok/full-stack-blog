@@ -14,6 +14,7 @@ router.post('/login', loginValidation, handleValidationErrors, authController.lo
 router.get('/me', checkAuth, getProfileInfo);
 
 router.get('/posts', postController.getAll);
+router.get('/tags', postController.getLastTags);
 router.get('/posts/:id', postController.getOne);
 router.post(
   '/posts',
