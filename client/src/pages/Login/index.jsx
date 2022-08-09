@@ -17,7 +17,6 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
@@ -34,12 +33,12 @@ export const Login = () => {
     const data = await dispatch(fetchAuth(values));
     console.log(data);
     if (!data.payload) {
-      return alert('invalid email or password')
+      return alert('invalid email or password');
     }
 
     if ('token' in data.payload) {
-      window.localStorage.setItem('token', data.payload.token)
-    } 
+      window.localStorage.setItem('token', data.payload.token);
+    }
   };
 
   return (

@@ -12,6 +12,7 @@ import { fetchPosts, fetchTags } from '../redux/thunks';
 
 export const Home = () => {
   const dispatch = useDispatch();
+  const userData = useSelector((state) => state.auth.data);
   const { posts, tags } = useSelector((state) => state.posts);
 
   const isPostLoading = posts.status === 'loading';
@@ -38,7 +39,7 @@ export const Home = () => {
                 key={post._id}
                 id={post._id}
                 title={post.title}
-                imageUrl={post.imageUrl}
+                imageUrl={post.imageUrl ? `http://localhost:4444${post.imageUrl}` : ''}
                 user={{
                   avatarUrl: post.author.avatarUrl,
                   fullName: post.author.fullName,
@@ -47,7 +48,7 @@ export const Home = () => {
                 viewsCount={post.viewsCount}
                 commentsCount={3}
                 tags={post.tags}
-                isEditable
+                isEditable={userData?._id === post.author._id}
                 isLoading={isPostLoading}
               />
             ),
